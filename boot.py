@@ -16,8 +16,8 @@ from soilmoisture import read_soil_moisture
 # import lcd
 
 def connect_to_wifi():
-    ssid = 'Get Your Own Wifi!'
-    password = 'vamkaP-camkow-8puzvy'
+    ssid = 
+    password = 
 
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
