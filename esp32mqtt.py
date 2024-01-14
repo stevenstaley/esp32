@@ -7,7 +7,7 @@ def on_message(topic, msg):
     print(f"Received message: {msg} from topic: {topic}")
 
 # Create a new MQTT client instance
-client = MQTTClient(client_id, broker_address, user=b'steven-staley', password=b'ZHarfoll2023!!', keepalive=60)
+client = MQTTClient(client_id, broker_address, keepalive=60)
 client.connect()
 
 # Connect to the broker
