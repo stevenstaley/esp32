@@ -19,8 +19,8 @@ def read_soil_moisture():
 
     # Convert the ADC value to percentage (assuming a linear response and 3.3V ADC reference)
     # You might need to calibrate these values depending on your sensor's output range.
-    min_val = 3795      # Replace with the value you get when the sensor is in dry soil
-    max_val = 3347   # Replace with the value you get when the sensor is in water
+    min_val = 4095      # Replace with the value you get when the sensor is in dry soil
+    max_val = 3294   # Replace with the value you get when the sensor is in water
     moisture_percentage = ((value - min_val) / (max_val - min_val)) * 100
 
     # Ensure the percentage is within 0-100% range
