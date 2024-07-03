@@ -1,0 +1,49 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+network:
+
+mqtt:
+  sensor:
+    - name: "Temperature"
+      state_topic: "homeassistant/publish/temperature"
+      unique_id: "Temp"
+      unit_of_measurement: "F"
+      value_template: "{{ value | int }}"
+      state_class: "total"
+
+    - name: "ESP32 Temp"
+      state_topic: "esp32/internaltemp"
+      unique_id: "ESP32 Temp"
+      unit_of_measurement: "F"
+      value_template: "{{ value | int }}"
+      state_class: "total"
+
+    - name: "Humidity"
+      state_topic: "homeassistant/publish/humidity"
+      unique_id: "Humidity_"
+      unit_of_measurement: "%"
+      value_template: "{{ value | int }}"
+
+    - name: "Soil"
+      state_topic: "homeassistant/publish/soilmoisture"
+      unique_id: "Soil Moisture"
+      unit_of_measurement: "%"
+      value_template: " {{ value | int }}"
+      state_class: "total"
+
+input_text:
+  nohup:
+   name: "Nohup Status"
+
+input_text:
+  dadjoke:
+   name: "Daily Dad Joke"
