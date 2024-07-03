@@ -39,11 +39,3 @@ mqtt:
       unit_of_measurement: "%"
       value_template: " {{ value | int }}"
       state_class: "total"
-
-input_text:
-  nohup:
-   name: "Nohup Status"
-
-input_text:
-  dadjoke:
-   name: "Daily Dad Joke"
