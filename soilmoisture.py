@@ -3,7 +3,7 @@ import time
 
 # Assuming you're using an ESP32, if not, you might need to adjust this.
 # Create an ADC object on GPIO2 (ADC2_CH2)
-adc = ADC(Pin(2))
+adc = ADC(Pin(35))
 
 # Configure the ADC resolution and attenuation
 # ESP32 supports up to 12 bits resolution.
@@ -26,7 +26,7 @@ def read_soil_moisture():
     # Ensure the percentage is within 0-100% range
     moisture_percentage = max(0, min(100, moisture_percentage))
 
-    return str(moisture_percentage)
+    return moisture_percentage
 
 while True:
     moisture = read_soil_moisture()
