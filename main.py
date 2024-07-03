@@ -3,6 +3,13 @@ from machine import ADC, Pin
 import time
 import dht
 #from soilmoisture import read_soil_moisture
+adc = ADC(Pin(35))
+# Configure the ADC resolution and attenuation
+# ESP32 supports up to 12 bits resolution.
+adc.width(ADC.WIDTH_12BIT)
+# For full range of input voltage (0v - 3.3v) in ESP32 use ADC.ATTN_11DB
+# Adjust the attenuation according to your sensor specification and application.
+adc.atten(ADC.ATTN_11DB)
 
 while True:
     broker_address = "192.168.0.211" # Replace with the IP address of the Raspberry Pi
