@@ -44,7 +44,7 @@ while True:
     client = MQTTClient(client_id, broker_address)
     client.connect()
     esp_temp = esp32.raw_temperature()
-    
+    h, f = read_temp_humidity()
     espt = esp32.raw_temperature()
     presh = read_pressure()
     client.publish(topic_t, str(float(f)))
