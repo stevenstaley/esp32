@@ -4,6 +4,7 @@ import esp32
 import time
 from bmp180 import BMP180
 from machine import SoftI2C, Pin
+from umqtt.simple import MQTTClient
 
 # create an I2C bus object accordingly to the port you are using
 # bus = I2C(1, baudrate=100000)           # on pyboard
@@ -38,32 +39,10 @@ while True:
     print(presh)
     time.sleep(2)
     
-from umqtt.simple import MQTTClient
-from machine import ADC, Pin
-import time
-import dht
-import esp32
 
-adc = ADC(Pin(35))
-# Configure the ADC resolution and attenuation
-# ESP32 supports up to 12 bits resolution.
-adc.width(ADC.WIDTH_12BIT)
-# For full range of input voltage (0v - 3.3v) in ESP32 use ADC.ATTN_11DB
-# Adjust the attenuation according to your sensor specification and application.
-adc.atten(ADC.ATTN_11DB)
 
-# Function to read and convert the soil moisture value
-def read_soil_moisture():
-    # Read the ADC value
-    value = adc.read()
-    # Convert the ADC value to percentage (assuming a linear response and 3.3V ADC reference)
-    # You might need to calibrate these values depending on your sensor's output range.
-    min_val = 4095      # Replace with the value you get when the sensor is in dry soil
-    max_val = 3294   # Replace with the value you get when the sensor is in water
-    moisture_percentage = ((value - min_val) / (max_val - min_val)) * 100
-    # Ensure the percentage is within 0-100% range
-    moisture_percentage = max(0, min(100, moisture_percentage))
-    return moisture_percentage
+ 
+
 
 
 while True:
