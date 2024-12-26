@@ -45,31 +45,8 @@ while True:
     f = (t * 1.8) + 32
     espt = esp32.raw_temperature()
     presh = read_pressure()
-    time.sleep(2)
-    
-
-
- 
-
-
-
-while True:
-
-    
-    d = dht.DHT11(Pin(4))
-
-    t = d.temperature()
-    h = d.humidity()
-    f = (t * 1.8) + 32
     client.publish(topic_t, str(float(f)))
     client.publish(topic_h, str(h))
+    client.publish(topic_p, str(p))
     client.publish(topic_esp_temp, str(esp_temp))
-    led = Pin(2, Pin.OUT)
-    led.on()
-    time.sleep(0.5)
-    led.off()
-    time.sleep(0.5)
-    moisture = read_soil_moisture()
-    client.publish(topic_soil, str(moisture))
-    time.sleep(3)
-
+    time.sleep(2)
