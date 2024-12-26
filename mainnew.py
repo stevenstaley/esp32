@@ -25,6 +25,15 @@ def read_pressure():
 
 
 while True:
+    broker_address = "192.168.0.211" # Replace with the IP address of the Raspberry Pi
+    client_id = "ESP32_Device"
+    topic_esp_temp = "esp32/internaltemp"
+    topic_t = "homeassistant/publish/temperature"
+    topic_h = "homeassistant/publish/humidity"
+    topic_soil = "homeassistant/publish/soilmoisture"
+    client = MQTTClient(client_id, broker_address)
+    client.connect()
+    esp_temp = esp32.raw_temperature()
     d = dht.DHT11(machine.Pin(4))
     d.measure()
     t = d.temperature()
@@ -46,15 +55,8 @@ while True:
 
 
 while True:
-    broker_address = "192.168.0.211" # Replace with the IP address of the Raspberry Pi
-    client_id = "ESP32_Device"
-    topic_esp_temp = "esp32/internaltemp"
-    topic_t = "homeassistant/publish/temperature"
-    topic_h = "homeassistant/publish/humidity"
-    topic_soil = "homeassistant/publish/soilmoisture"
-    client = MQTTClient(client_id, broker_address)
-    client.connect()
-    esp_temp = esp32.raw_temperature()
+
+    
     d = dht.DHT11(Pin(4))
     try:
         d.measure()
