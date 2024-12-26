@@ -35,7 +35,11 @@ while True:
     client.connect()
     esp_temp = esp32.raw_temperature()
     d = dht.DHT11(machine.Pin(4))
-    d.measure()
+    try:
+        d.measure()
+    except OSError as e:
+        print("Messed up")
+    pass
     t = d.temperature()
     h = d.humidity()
     f = (t * 1.8) + 32
@@ -53,11 +57,7 @@ while True:
 
     
     d = dht.DHT11(Pin(4))
-    try:
-        d.measure()
-    except OSError as e:
-        print("Messed up")
-    pass
+
     t = d.temperature()
     h = d.humidity()
     f = (t * 1.8) + 32
