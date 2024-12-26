@@ -30,7 +30,7 @@ while True:
     topic_esp_temp = "esp32/internaltemp"
     topic_t = "homeassistant/publish/temperature"
     topic_h = "homeassistant/publish/humidity"
-    topic_soil = "homeassistant/publish/soilmoisture"
+    topic_p = "homeassistant/publish/pressure"
     client = MQTTClient(client_id, broker_address)
     client.connect()
     esp_temp = esp32.raw_temperature()
@@ -40,12 +40,7 @@ while True:
     h = d.humidity()
     f = (t * 1.8) + 32
     espt = esp32.raw_temperature()
-
-    print("The temperature is " + str(f))
-    print("The humidity is " + str(h))
-    print("The ESP's temperature is " + str(espt))
     presh = read_pressure()
-    print(presh)
     time.sleep(2)
     
 
