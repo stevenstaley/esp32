@@ -22,7 +22,17 @@ def read_pressure():
 # altitude = bmp180.altitude
     return formatinhg
 
-
+def read_temp_humidity():
+    d = dht.DHT11(machine.Pin(4))
+    try:
+        d.measure()
+    except OSError as e:
+        print("Messed up")
+    pass
+    t = d.temperature()
+    h = d.humidity()
+    f = (t * 1.8) + 32
+    return h, f
 
 while True:
     broker_address = "192.168.0.211" # Replace with the IP address of the Raspberry Pi
@@ -34,15 +44,7 @@ while True:
     client = MQTTClient(client_id, broker_address)
     client.connect()
     esp_temp = esp32.raw_temperature()
-    d = dht.DHT11(machine.Pin(4))
-    try:
-        d.measure()
-    except OSError as e:
-        print("Messed up")
-    pass
-    t = d.temperature()
-    h = d.humidity()
-    f = (t * 1.8) + 32
+    
     espt = esp32.raw_temperature()
     presh = read_pressure()
     client.publish(topic_t, str(float(f)))
