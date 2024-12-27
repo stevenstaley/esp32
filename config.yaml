@@ -1,0 +1,8 @@
+sensor 1:
+    platform: mqtt
+    name: "Temperature"
+    state_topic: "homeassistant/publish/temperature"
+    unique_id: "Temp"
+    unit_of_measurement: "F"
+    value_template: "{{ value | int }}"
+    state_class: "total"
